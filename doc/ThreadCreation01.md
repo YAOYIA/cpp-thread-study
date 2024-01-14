@@ -1,8 +1,8 @@
-#c++并发编程（一）：创建线程
+##c++并发编程（一）：创建线程
 <thread>库提供了c++中线程创建和操作线程的机制。这个库中，最基本的类的是std::thread，表示一个可以执行的线程。
 为了使用std::thread，需要定义一个函数，这个函数作为线程执行的任务。
 
-#不带参数的函数创建线程
+##不带参数的函数创建线程
 void printMessage() {
     std::cout << "Hello from the thread!" << std::endl;
 }
