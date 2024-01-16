@@ -1,4 +1,4 @@
-### c++并发编程（三）条件变量（Condition Variable）
+# c++并发编程（三）条件变量（Condition Variable）
 条件变量的一般用法，线程A等待某个条件并挂起，直到线程B设置了这个条件，并通知条件变量，然后线程A被唤起。经典的生产者-消费者问题可以通过条件变量来解决。
 这里的等待线程可以是多个，通知线程可以选择一次通知一个（notify_one）或者一次通知所有(notify_all)。
 
@@ -6,19 +6,19 @@
 
 ## 条件变量主要涉及以下几个关键点：
 
-# 等待条件（Waiting for a Condition）：
+## 等待条件（Waiting for a Condition）：
 线程使用条件变量来等待某个条件的发生。当线程调用条件变量的wait方法时，它会自动释放与之关联的互斥锁，并进入阻塞状态。这样可以避免忙等待（busy-waiting），节省处理器资源。
 
-# 通知（Notification）：
+## 通知（Notification）：
 当条件发生变化时（比如被另一个线程修改），需要通知等待条件变量的线程。这可以通过调用条件变量的notify_one或notify_all方法来实现。notify_one仅唤醒一个等待线程，而notify_all会唤醒所有等待线程。
 
-# 互斥锁（Mutex）的作用：
+## 互斥锁（Mutex）的作用：
 互斥锁用来同步对共享数据的访问，确保在检查条件和修改条件时不会发生数据竞争。
 
-# 使用范例：
+## 使用范例：
 条件变量通常用于生产者-消费者模式，其中生产者线程生成数据，消费者线程消费数据。当没有数据可消费时，消费者线程等待条件变量，直到生产者线程生成新数据并发送通知。
 
-# std::condition_variable的wait方法主要接受两个参数
+## std::condition_variable的wait方法主要接受两个参数
 唯一锁（Unique Lock）:
 这个参数是一个std::unique_lock<std::mutex>类型的对象，它必须在调用wait之前锁定相应的互斥量（mutex）。unique_lock是一个作用域锁，它提供了比std::lock_guard更灵活的锁定和解锁操作，包括能够在不销毁锁对象的情况下手动解锁和重新锁定。
 谓词（Predicate）:
